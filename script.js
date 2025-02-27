@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!("webkitSpeechRecognition" in window)) {
         output.textContent = "Seu navegador não suporta reconhecimento de voz.";
         return;
-    }
+    };
 
     const recognition = new webkitSpeechRecognition();
     recognition.continuous = true;
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         savedNotes.appendChild(noteContainer);
 
         saveNote = "";
-        output.textContent = "Sua transcrição aparecerá aqui..."
+        output.textContent = "Sua transcrição aparecerá aqui...";
     });
 
     recognition.onresult = (event) => {
@@ -80,5 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     recognition.onerror = (event) => {
         output.textContent = "Erro ao reconhecer voz: " + event.error;
+        talking = false;
+        saveNote = "";
     };
 });
