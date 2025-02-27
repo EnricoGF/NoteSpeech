@@ -39,7 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     saveButton.addEventListener("click", () => {
-        if (saveNote.trim() === "") {
+        if (talking) {
+            alert("A gravação precisa ser finalizada para salvar a nota")
+            return
+        }
+        else if (saveNote.trim() === "") {
             alert("Não há nenhuma nota para salvar.");
             return;
         }
@@ -63,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         savedNotes.appendChild(noteContainer);
 
         saveNote = "";
+        output.textContent = "Sua transcrição aparecerá aqui..."
     });
 
     recognition.onresult = (event) => {

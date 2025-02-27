@@ -39,27 +39,27 @@ button:hover {
 }
 
 #savedNotes {
-    max-width: 600px; /* Limitar a largura para ficar consistente */
-    margin: auto; /* Centralizar a div */
-    padding: 20px; /* Adicionar espaçamento interno */
-    background: white; /* Fundo branco para combinar com o contêiner */
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
-    margin-top: 20px; /* Espaçamento acima da div */
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
 #savedNotes h2 {
-    margin-top: 0; /* Remover margem superior do título */
+    margin-top: 0;
 }
 
 #savedNotes textarea {
-    resize: none; /* Impede o redimensionamento da textarea */
-    margin: 0; /* Remove margens */
-    font-family: Arial, sans-serif; /* Define a mesma fonte que o resto da página */
-    font-size: 16px; /* Define o mesmo tamanho de fonte que o resto da página */
-    width: 100%; /* Faz a textarea ocupar toda a largura disponível */
-    padding: 10px; /* Adiciona um pouco de espaçamento interno */
-    border: 1px solid #ddd; /* Borda leve para a textarea */
-    border-radius: 5px; /* Bordas arredondadas */
-    box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+    resize: none;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
