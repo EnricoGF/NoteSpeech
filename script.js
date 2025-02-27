@@ -1,40 +1,68 @@
 document.addEventListener("DOMContentLoaded", () => {
     const startButton = document.getElementById("startButton");
     const stopButton = document.getElementById("stopButton");
+    const saveButton = document.getElementById("saveButton");
     const output = document.getElementById("output");
-    let talking = false
+    const savedNotes = document.getElementById("savedNotes");
+    let talking = false;
+    let saveNote = "";
 
-    // Verifica se o navegador suporta a API de reconhecimento de voz
     if (!("webkitSpeechRecognition" in window)) {
         output.textContent = "Seu navegador não suporta reconhecimento de voz.";
         return;
     }
 
     const recognition = new webkitSpeechRecognition();
-    recognition.continuous = true;  // Não para após detectar uma pausa
-    recognition.interimResults = true;  // Mostra resultados parciais
-    recognition.lang = "pt-BR";  // Define o idioma
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = "pt-BR";
 
     startButton.addEventListener("click", () => {
-        if (talking == false) {
+        if (!talking) {
             output.textContent = "Ouvindo...";
             recognition.start();
-            talking = true
-        }
-        else {
-            alert("A gravação já foi iniciada")
+            talking = true;
+        } else {
+            alert("A gravação já foi iniciada");
         }
     });
 
     stopButton.addEventListener("click", () => {
-        if (talking == true) {
-            output.textContent += " (Finalizado)";
+        if (talking) {
             recognition.stop();
-            talking = false
+            talking = false;
+            alert("A gravação foi finalizada");
+            saveNote = output.textContent;
+        } else {
+            alert("A gravação não foi iniciada.");
         }
-        else {
-            alert("A gravação não foi iniciada.")
+    });
+
+    saveButton.addEventListener("click", () => {
+        if (saveNote.trim() === "") {
+            alert("Não há nenhuma nota para salvar.");
+            return;
         }
+
+        const noteContainer = document.createElement("div");
+        noteContainer.classList.add("note");
+
+        const noteTextArea = document.createElement("textarea");
+        noteTextArea.value = saveNote;
+        noteTextArea.rows = 4;
+        noteTextArea.cols = 50;
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Excluir";
+        deleteButton.addEventListener("click", () => {
+            savedNotes.removeChild(noteContainer);
+        });
+
+        noteContainer.appendChild(noteTextArea);
+        noteContainer.appendChild(deleteButton);
+        savedNotes.appendChild(noteContainer);
+
+        saveNote = "";
     });
 
     recognition.onresult = (event) => {
