@@ -87,6 +87,24 @@ document.addEventListener("DOMContentLoaded", () => {
         noteTextArea.rows = 4;
         noteTextArea.cols = 50;
 
+        const updateButton = document.createElement("button");
+        updateButton.textContent = "Atualizar";
+        updateButton.addEventListener("click", async () => {
+            const updatedContent = noteTextArea.value;
+            try {
+                await fetch(`http://localhost:3000/update/${id}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ content: updatedContent })
+                });
+                alert("Nota atualizada com sucesso!");
+            } catch (error) {
+                console.error("Erro ao atualizar nota:", error);
+            }
+        });
+
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Excluir";
         deleteButton.addEventListener("click", async () => {
@@ -99,6 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         noteContainer.appendChild(noteTextArea);
+        noteContainer.appendChild(updateButton);
         noteContainer.appendChild(deleteButton);
         savedNotes.appendChild(noteContainer);
     }

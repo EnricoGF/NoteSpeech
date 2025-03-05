@@ -5,7 +5,6 @@ const cors = require("cors");
 const app = express();
 const port = 3000;
 
-// Conectar ao banco de dados SQLite
 const db = new sqlite3.Database("notes.db", (err) => {
     if (err) {
         console.error(err.message);
@@ -18,7 +17,6 @@ const db = new sqlite3.Database("notes.db", (err) => {
 app.use(express.json());
 app.use(cors());
 
-// Rota para salvar uma nota
 app.post("/save", (req, res) => {
     const { content } = req.body;
     db.run("INSERT INTO notes (content) VALUES (?)", [content], function (err) {
@@ -29,7 +27,6 @@ app.post("/save", (req, res) => {
     });
 });
 
-// Rota para obter todas as notas
 app.get("/notes", (req, res) => {
     db.all("SELECT * FROM notes", [], (err, rows) => {
         if (err) {
@@ -39,7 +36,6 @@ app.get("/notes", (req, res) => {
     });
 });
 
-// Rota para excluir uma nota
 app.delete("/delete/:id", (req, res) => {
     const { id } = req.params;
     db.run("DELETE FROM notes WHERE id = ?", [id], function (err) {
@@ -47,6 +43,17 @@ app.delete("/delete/:id", (req, res) => {
             return res.status(500).json({ error: err.message });
         }
         res.json({ message: "Nota excluída com sucesso!" });
+    });
+});
+
+app.put("/update/:id", (req, res) => {
+    const { id } = req.params;
+    const { content } = req.body;
+    db.run("UPDATE notes SET content = ? WHERE id = ?", [content, id], function (err) {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json({ message: "Nota atualizada com sucesso!" });
     });
 });
 
