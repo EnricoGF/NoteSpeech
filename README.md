@@ -1,22 +1,42 @@
-# Note Speech - Voice Notes Application
+# NoteSpeech
 
-## Description
+Note Speech is a web application that allows you to create text notes using your voice. It utilizes the voice recognition technology of API's and frameworks platform to provide a smooth and intuitive user experience.
 
-Note Speech is a web application that allows you to create text notes using your voice. It utilizes the voice recognition technology of  API's and frameworks platform to provide a smooth and intuitive user experience.
+## Requirements
 
-## Features
+- [Node.js](https://nodejs.org/) (Latest version recommended)
 
--   **Voice note creation:** Dictate your notes and the application will automatically transcribe them into text.
--   **Simple and intuitive interface:** Minimalist design for easy use and organization of your notes.
--   **Note saving:** Save your text notes in the web page
--   **Note editing:** Edit your text notes directly in the application.
+## Installation
 
-### Future Features
+1. **Clone this repository**:
+   ```sh
+   git clone https://github.com/EnricoGF/NoteSpeech
+   ```
+2. **Install dependencies**:
+   ```sh
+   npm install express sqlite3 cors
+   ```
+3. **Start the server**:
+   ```sh
+   node server.js
+   ```
+4. **Open `index.html` in your browser**.
 
--   **Local storage:** Your notes are stored locally on your computer, ensuring privacy and security.
+## How It Works
+
+1. Click "Start Recording" to begin speech recognition.
+2. Click "Stop Recording" to finalize the transcription.
+3. Click "Save Recording" to store the transcription in the database.
+4. Saved transcriptions will be displayed in the "Saved Notes" section.
+5. You can delete a saved note by clicking the "Delete" button.
 
 ## Technologies Used
+- Node.js
+- Express.js
+- SQLite
+- Web Speech API
+- JavaScript (Frontend & Backend)
+- HTML & CSS
 
--   **Electron.js:** Framework for creating desktop applications with web technologies (HTML, CSS, and JavaScript).
--   **Web Speech API:** Browser API for voice recognition and speech synthesis.
--   **HTML, CSS, and JavaScript:** Web technologies for the application's interface and logic.
+## License
+This project is open-source and available under the MIT License.
